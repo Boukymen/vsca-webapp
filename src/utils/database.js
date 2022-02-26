@@ -14,3 +14,12 @@ export function setData(user, key) {
         }
     )
 }
+
+export function checkKey(user) {
+    return get(ref(db, `user_data/` + user)).then(
+        (data) => {
+            console.log(data);
+            return data
+        }
+    )
+}

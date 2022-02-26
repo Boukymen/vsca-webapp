@@ -5,7 +5,7 @@ import { Navigate, useNavigate } from 'react-router-dom'
 import { Base64 } from "js-base64";
 import utf8 from 'utf8'
 import Cookies from 'js-cookie'
-import { setData } from "../../utils/database";
+import { setData, checkKey } from "../../utils/database";
 import './home.css'
 import { FaGithub } from "react-icons/fa";
 
@@ -14,8 +14,11 @@ export default function Home() {
     async function handleClick(provider) {
         const res = await socialAuth(provider);
         const user = await getUser(res.providerData[0].uid);
-        const rand = Math.floor((Math.random() * 100) + 1);
-        const key = (!Cookies.get('vsa_token')) ? Base64.encode(utf8.encode(user.login + ':' + new Date().toDateString()) + rand.toString()) : Cookies.get('vsa_token');
+        //const rand = Math.floor((Math.random() * 100) + 1);
+        if (checkKey(user.login)) {
+            console.log('data found')
+        }
+        let key = (!Cookies.get('vsa_token')) ? Base64.encode(utf8.encode(user.login + ':' + user.email)) : Cookies.get('vsa_token');
         navigate(
             '/user', 
             { state: 
