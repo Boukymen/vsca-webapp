@@ -2,13 +2,13 @@ import firebase from 'firebase/compat/app'
 import 'firebase/compat/auth';
 
 const firebaseConfig = {
-	apiKey: "AIzaSyAeLYb4BU7j7e84DXbtbvwpPTiYukvorjg",
-	databaseURL: "https://vscodeactivity-default-rtdb.firebaseio.com/",
-	authDomain: "vscodeactivity.firebaseapp.com",
-	projectId: "vscodeactivity",
-	storageBucket: "vscodeactivity.appspot.com",
-	messagingSenderId: "741151793284",
-	appId: "1:741151793284:web:759a1e43886d6957f322d1"
+	apiKey: process.env["REACT_APP_FR_KEY"],
+	databaseURL: process.env["REACT_APP_FR_URL"],
+	authDomain: process.env["REACT_APP_FR_DOMAIN"],
+	projectId: process.env["REACT_APP_FR_ID"],
+	storageBucket: process.env["REACT_APP_FR_BUCKET"],
+	messagingSenderId: process.env["REACT_APP_FR_MSG_ID"],
+	appId: process.env["REACT_APP_FR_APP_ID"]
 }
 
 const fireapp = firebase.initializeApp(firebaseConfig);
