@@ -1,5 +1,5 @@
 import fireapp from "./fireapp";
-import { getDatabase, ref, set, get, update } from 'firebase/database'
+import { child, getDatabase, ref, set, get, update } from 'firebase/database'
 
 const db = getDatabase(fireapp);
 
@@ -16,7 +16,7 @@ export function setData(user, key) {
 }
 
 export function checkKey(user) {
-    return get(ref(db, `user_data/` + user)).then(
+    return get(child(ref(db, `user_data/` + user))).then(
         (data) => {
             console.log(data);
             return data

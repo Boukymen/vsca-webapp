@@ -20,7 +20,7 @@ export default function Home() {
         }
         let key = (!Cookies.get('vsa_token')) ? Base64.encode(utf8.encode(user.login + ':' + user.email)) : Cookies.get('vsa_token');
         navigate(
-            '/user', 
+            '/me', 
             { state: 
                 { user: 
                     {
@@ -48,7 +48,7 @@ export default function Home() {
     }
     if (localStorage.getItem('user')) {
         return (
-            <Navigate to="/user" state={{'user' : JSON.parse(localStorage.getItem('user'))}}/>
+            <Navigate to="/me" state={{'user' : JSON.parse(localStorage.getItem('user'))}}/>
         )
     }
     return (
