@@ -18,7 +18,11 @@ export default function Home() {
         if (checkKey(user.login)) {
             console.log('data found')
         }
-        let key = (!Cookies.get('vsa_token')) ? Base64.encode(utf8.encode(user.login + ':' + user.email)) : Cookies.get('vsa_token');
+        if (checkKey(user.login)) {
+           var key = checkKey(user.login);
+        } else {
+            var key = Base64.encode(utf8.encode(user.login + ':' + user.email));
+        }
         navigate(
             '/me', 
             { state: 

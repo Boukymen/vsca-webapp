@@ -18,8 +18,12 @@ export function setData(user, key) {
 export function checkKey(user) {
     return get(child(ref(db), `user_data/${user}`)).then(
         (data) => {
-            console.log(data.val());
-            return data
+            //console.log(data.val());
+            if (data.exists()) {
+                return data.val().token;
+            } else {
+                return null;
+            }
         }
     )
 }
