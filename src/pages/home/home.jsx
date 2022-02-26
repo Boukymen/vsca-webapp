@@ -14,6 +14,7 @@ export default function Home() {
     async function handleClick(provider) {
         const res = await socialAuth(provider);
         const user = await getUser(res.providerData[0].uid);
+        console.log(res.uid)
         const token = await checkKey(user.login)
         //const rand = Math.floor((Math.random() * 100) + 1);
         if (checkKey(user.login)) {
@@ -22,7 +23,7 @@ export default function Home() {
         if (token) {
            var key = token;
         } else {
-            var key = Base64.encode(utf8.encode(user.login + ':' + user.email));
+            var key = Base64.encode(utf8.encode(user.login + ':' + res.uid));
         }
         navigate(
             '/me', 
